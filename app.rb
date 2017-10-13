@@ -1,6 +1,9 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
+require 'sqlite3'
+
+db visit = SQlite3::Database.new 'db visit'
 
 configure do
   enable :sessions
