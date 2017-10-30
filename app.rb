@@ -3,7 +3,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
-db visit = SQlite3::Database.new 'db visit'
+db_visit = SQLite3::Database.new 'db visit'
 
 configure do
   enable :sessions
@@ -48,12 +48,16 @@ post '/visit' do
 
     @error = hh.select {|key,_| params[key] == ""}.values.join(',')
 
+   db_visit.execute "INSERT INTO Visit (Hairdresser,Name,NumberPhone,DataTime) VALUES ('@list', '@username',@namber_phone,@data_time)"
 
+   db_visit.close
 
 
   f = File.open './public/user.txt','a'
   f.write "User:#{@username}, Phone:#{@namber_phone}, Data:#{@data_time}, Hairdresser:#{@list}, Color: #{@color}. "
   f.close
+
+  
 
   erb :visit
 end
