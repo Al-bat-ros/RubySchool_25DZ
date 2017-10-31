@@ -48,18 +48,19 @@ post '/visit' do
 
     @error = hh.select {|key,_| params[key] == ""}.values.join(',')
 
-   db_visit.execute "INSERT INTO Visit (Hairdresser,Name,NumberPhone,DataTime) VALUES ('@list', '@username',@namber_phone,@data_time)"
+   db_visit.execute "INSERT INTO Visit (Hairdresser,Name,NumberPhone,DataTime) VALUES ('@list', '@username', '@namber_phone', '@data_time')"
 
-   db_visit.close
+   #db_visit.close
 
 
-  f = File.open './public/user.txt','a'
-  f.write "User:#{@username}, Phone:#{@namber_phone}, Data:#{@data_time}, Hairdresser:#{@list}, Color: #{@color}. "
-  f.close
+  #f = File.open './public/user.txt','a'
+  #f.write "User:#{@username}, Phone:#{@namber_phone}, Data:#{@data_time}, Hairdresser:#{@list}, Color: #{@color}. "
+  #f.close
 
   
 
   erb :visit
+  
 end
 
 post '/contacts' do
